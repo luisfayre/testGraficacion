@@ -11,10 +11,43 @@
     x: -700,
   }); */
 
-new Circle(500, 500, 100)
+new Circle(10, 10, 6)
 	.addTo(stage)
-	.attr('fillColor', 'red');
-
-new Arc(300, 300, 100, 0, 50, 300)
+  .attr('fillColor', 'red')
+  .animate('10s', {
+    x: 0,
+    y: 0
+  },{
+    delay: '10s'  
+  }
+)
+  .animate('5s', {
+    y: 450
+  },{
+    delay: '5s'  
+   }
+)
+.animate('5s', {
+  x: 300
+})
+  
+  
+new Arc(10, 10, 6, 0, 9, 9)
 	.addTo(stage)
-	.attr('fillColor', 'red');
+  .attr('fillColor', 'green')
+  .animate('11s', {
+    x: 0,
+    y: 0
+  },{
+    delay: '11s'  
+  }
+)
+  .animate('6s', {
+    y: 450
+  },{
+    delay: '6s'  
+   }
+)
+.animate('6s', {
+  x: 300
+})
