@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Pong Game</title>
+	<style>
+	*{
+		padding: 0;
+		margin: 0;
+	}
+	canvas{
+		background: #eee;
+		display: block;
+		margin: 0 auto;
+	}
+		</style>
+</head>
+<body>
+	<canvas id="myCanvas" width="480" height="320"></canvas>
+	<script>
+
+	var canvas = document.getElementById("myCanvas");
+	var ctx = canvas.getContext('2d');
+
+	ctx.beginPath();//Señala el camino donde se iniciara
+	ctx.rect(20,40,50,50);
+	ctx.fillStyle = '#48C9B0'; //Color del fill
+	ctx.fill();//Pinta
+	ctx.closePath(); //Sierra el camino
+
+	ctx.beginPath();
+	ctx.arc(240,160,20,0,Math.PI*2,false); //Crear un arco documetacion de javascript
+	ctx.fillStyle = '#3498DB'; //Color del fill
+	ctx.fill();//Pinta
+	ctx.closePath();
+
+	ctx.beginPath();
+	ctx.rect(160,10,100,40); //Crear un arco documetacion de javascriot
+	ctx.strokeStyle = '#E74C3C'; //Color del contorno
+	ctx.stroke();//Pinta
+	ctx.closePath();
+
+	</script>
+</body>
+</html>
