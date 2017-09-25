@@ -18,7 +18,7 @@
 	<canvas id="myCanvas" width="480" height="320"></canvas>
 	<script>
 
-	var canvas = document.getElementById("myCanvas");
+	/*var canvas = document.getElementById("myCanvas");
 	var ctx = canvas.getContext('2d');
 
 	ctx.beginPath();//Señala el camino donde se iniciara
@@ -37,7 +37,53 @@
 	ctx.rect(160,10,100,40); //Crear un arco documetacion de javascriot
 	ctx.strokeStyle = '#E74C3C'; //Color del contorno
 	ctx.stroke();//Pinta
-	ctx.closePath();
+	ctx.closePath();*/
+
+	var canvas = document.getElementById("myCanvas");
+	var ctx = canvas.getContext('2d');
+	var x = canvas.width/2;
+	var y = canvas.height - 30;
+	var dx = 2; //se aumenta 2 veces en x
+	var dy = -2; //se aumenta -2 veces en y
+
+	function drawBall() {
+		ctx.beginPath();
+		ctx.arc(x,y,10,0,Math.PI*2); //Crear un arco
+		ctx.fillStyle = '#3498DB'; //Color del fill
+		ctx.fill();//Pinta
+		ctx.closePath();
+	}
+	function draw(){
+		ctx.clearRect(0,0,canvas.width,canvas.height);
+		drawBall();
+		x += dx;
+		y += dy;
+	}
+
+	setInterval(draw,10);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 	</script>
 </body>
