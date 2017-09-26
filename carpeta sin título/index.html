@@ -8,14 +8,14 @@
 		margin: 0;
 	}
 	canvas{
-		background: #eee;
+		background:#1B2631;
 		display: block;
 		margin: 0 auto;
 	}
 		</style>
 </head>
 <body>
-	<canvas id="myCanvas" width="480" height="320"></canvas>
+	<canvas id="myCanvas" width="1280 " height="720"></canvas>
 	<script>
 
 	/*var canvas = document.getElementById("myCanvas");
@@ -41,50 +41,68 @@
 
 	var canvas = document.getElementById("myCanvas");
 	var ctx = canvas.getContext('2d');
+	var ballRadius = 10;
 	var x = canvas.width/2;
 	var y = canvas.height - 30;
 	var dx = 2; //se aumenta 2 veces en x
 	var dy = -2; //se aumenta -2 veces en y
+	var paddleHeigth = 10;
+	var paddleWidth = 75;
+	var paddleX = (canvas.width-paddleWidth)/2;
+	var rightPressed = false;
+	var leftPressed = false;
+
+	document.addEventListener('keydown',keyDownHandler, false);
+	document.addEventListener('keyup',keyUpHandler, false);
+
+	function keyDownHandler(e){
+		if(e.keyCode === 39){
+			rightPressed = true;
+		}else if(e.keyCode === 37){
+			leftPressed = true;
+		}
+console.log(e);
+	}
+	function keyUpHandler(e){
+		if(e.keyCode === 39){
+			rightPressed = false;
+		}else if(e.keyCode === 37){
+			leftPressed = false;
+		}
+	
+		console.log(e);
+	}
 
 	function drawBall() {
 		ctx.beginPath();
-		ctx.arc(x,y,10,0,Math.PI*2); //Crear un arco
+		ctx.arc(x,y,ballRadius,0,Math.PI*2); //Crear un arco
 		ctx.fillStyle = '#3498DB'; //Color del fill
 		ctx.fill();//Pinta
 		ctx.closePath();
 	}
+
+	function drawPaddle() {
+		ctx.beginPath();
+		ctx.rect(paddleX,canvas.height - paddleHeigth,paddleWidth,paddleHeigth);
+		ctx.fillStyle = '#EC7063'; //Color del fill
+		ctx.fill();//Pinta
+		ctx.closePath();
+	}
+	
 	function draw(){
 		ctx.clearRect(0,0,canvas.width,canvas.height);
 		drawBall();
+		drawPaddle();
+		if (x + dx > canvas.width-ballRadius || x + dx < ballRadius){
+			dx=-dx;
+		}
+		if (y + dy > canvas.height-ballRadius || y + dy < ballRadius){
+			dy=-dy;
+		}
 		x += dx;
 		y += dy;
 	}
-
 	setInterval(draw,10);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	</script>
 </body>
 </html>
