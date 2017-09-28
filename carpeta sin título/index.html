@@ -51,6 +51,22 @@
 	var paddleX = (canvas.width-paddleWidth)/2;
 	var rightPressed = false;
 	var leftPressed = false;
+	//Bloques
+	var brickColumnCount = 5; //Columenas
+	var brickRowCount = 3; //Filas
+	var brickWidth = 75; //Bloque
+	var brickHeigth = 20;
+	var brickOffsetTop = 30;
+	var brickOffsetLeft = 30;
+	var brickPadding = 10;
+
+	var bricks = [];
+	for(c = 0; c< brickColumnCount; c++){
+		bricks[c] = [];
+		for(r = 0; r<brickRowCount; r++){
+			bricks[c][r] = {x:0, y:0};
+		} 
+	}
 
 	document.addEventListener('keydown',keyDownHandler, false);
 	document.addEventListener('keyup',keyUpHandler, false);
@@ -94,10 +110,27 @@
 		ctx.fill();//Pinta
 		ctx.closePath();
 	}
+
+	function drawBicks(){
+		for(c = 0; c< brickColumnCount; c++){
+			for(r = 0; r< brickRowCount; r++){
+				var brickX = (c*(brickWidth + brickPadding))+ brickOffsetLeft;
+				var brickY = (c*(brickHeigth + brickPadding))+ brickOffsetTop;
+				bricks[c][r].x = 0;  //La X es para hacer un objeto
+				bricks[c][r].y = 0;
+				ctx.beginPath();
+				ctx.rect(brickX,brickY,brickWidth,brickHeigth);
+				ctx.fillStyle = '#5DADE2';
+				ctx.fill();
+				ctx.closePath();
+			}
+		}
+	}
 	
 	function draw(){
 		ctx.clearRect(0,0,canvas.width,canvas.height);
 		drawBall();
+		drawBicks();
 		drawPaddle();
 		if(y + dy < ballRadius){
 			dy= -dy;
